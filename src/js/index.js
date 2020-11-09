@@ -7,20 +7,10 @@ const key = `bf4202f8db0e27501960cf60881777d4`;
 const init = async function () {
   try {
     const character = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${searchTerm}&apikey=${key}`;
-
     const response = await fetch(character);
     const data = await response.json();
-    data.results.forEach((character) => {
-      let genreArr = [];
-      const addGenre = function () {
-        genres.forEach((element) => {
-          if (movie.genre_ids.includes(element.id)) {
-            genreArr.push(element.name);
-            return genreArr;
-          }
-        });
-      };
-      addGenre();
+    const query = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${searchTerm}&apikey=${key}`;
+
       DOMSelectors.grid.insertAdjacentHTML(
         "beforeend",
         `<div class="movie-card">
